@@ -18,6 +18,14 @@ const UserController = {
       console.log({users});
       res.send(users)
     })
+  },
+  updateUser(req, res) {
+    const query = { firstName: req.body.name }
+    User.findOneAndUpdate(query, {firstName: req.body.newName}, (err, user) => {
+      if (err) return console.error(err);
+      console.log({user});
+      res.send(user)
+    })
   }
 }
 

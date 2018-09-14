@@ -42,3 +42,25 @@ function getAllUsers(){
     console.log({err});
   })
 }
+
+function updateUser() {
+  const oldName = document.getElementById('oldName');
+  const newName = document.getElementById('newName');
+  const bodyInfo = {name: oldName.value, newName: newName.value};
+
+  fetch('/update', {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(bodyInfo)
+  }).then((resp) => {
+    return resp.json();
+  }).then((updatedUser) => {
+      console.log({updatedUser});
+      oldName.value = ''
+      newName.value = ''
+  }).catch((err) => {
+    console.log({err});
+  })
+}

@@ -11,9 +11,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
 })
 
-app.get('/allUsers', UserController.getAllUsers)
+app.get('/allUsers', UserController.getAllUsers);
 
-app.post('/user', UserController.createUser)
+app.post('/user', UserController.createUser);
+
+app.put('/update', UserController.updateUser);
 
 app.listen(3000, () => {
   console.log('listening to 3000');
