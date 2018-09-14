@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/practice-app');
+const info = require('../.dbinfo')
+// mongoose.connect('mongodb://localhost/practice-app');
+mongoose.connect(`mongodb://${info.use}:${info.pword}@ds257752.mlab.com:57752/practice-app`);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'))
