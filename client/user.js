@@ -29,6 +29,8 @@ function getAllUsers(){
   fetch('/allUsers').then((resp) => {
     return resp.json();
   }).then((data) => {
+    // const userDiv = document.getElementById('allUserList');
+    // userDiv.removeChild();
     console.log({data});
     const userList = document.createElement('ul');
     for (let i=0; i<data.length; i++){
@@ -36,8 +38,14 @@ function getAllUsers(){
       item.innerHTML = data[i].firstName;
       userList.appendChild(item);
     }
-    const body = document.getElementsByTagName('body')[0];
-    body.appendChild(userList)
+    //const body = document.getElementsByTagName('body')[0];
+    //body.appendChild(userList)
+    const userDiv = document.getElementById('allUserList');
+    if (userDiv.children[0]){
+      userDiv.replaceChild(userList, userDiv.children[0])
+    }else{
+      userDiv.appendChild(userList)
+    }
   }).catch((err) =>{
     console.log({err});
   })
@@ -62,5 +70,23 @@ function updateUser() {
       newName.value = ''
   }).catch((err) => {
     console.log({err});
+  })
+}
+
+function deleteUser() {
+  const name = document.getElementById('deleteName');
+  bodyInfo = {name: name.value}
+  fetch('/delete', {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(bodyInfo)
+  }).then((resp) => {
+    return resp.json();
+  }).then((data) => {
+    console.log({data});
+    getAllUsers();
+    name.value = ''
   })
 }

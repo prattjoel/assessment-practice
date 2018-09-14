@@ -26,6 +26,13 @@ const UserController = {
       console.log({user});
       res.send(user)
     })
+  },
+  deleteUser(req, res) {
+    const query = { firstName: req.body.name };
+    User.deleteOne(query, (err) => {
+      if (err) return console.error(err);
+      res.send({data: 'data'})
+    })
   }
 }
 
