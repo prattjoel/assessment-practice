@@ -11,6 +11,13 @@ const UserController = {
       if (err) return console.error(err);
       res.send({user})
     })
+  },
+  getAllUsers(req, res) {
+    User.find((err, users) => {
+      if (err) return console.error(err);
+      console.log({users});
+      res.send(users)
+    })
   }
 }
 

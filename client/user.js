@@ -24,3 +24,21 @@ function getUser(){
     console.log({err});
   })
 }
+
+function getAllUsers(){
+  fetch('/allUsers').then((resp) => {
+    return resp.json();
+  }).then((data) => {
+    console.log({data});
+    const userList = document.createElement('ul');
+    for (let i=0; i<data.length; i++){
+      const item = document.createElement('li');
+      item.innerHTML = data[i].firstName;
+      userList.appendChild(item);
+    }
+    const body = document.getElementsByTagName('body')[0];
+    body.appendChild(userList)
+  }).catch((err) =>{
+    console.log({err});
+  })
+}
