@@ -90,3 +90,17 @@ function deleteUser() {
     name.value = ''
   })
 }
+
+function findOneUser() {
+  const userInput = document.getElementById('findUserInput');
+  fetch(`/oneUser/${userInput.value}`).then((resp) => {
+    return resp.json();
+  }).then((user) => {
+    console.log({user});
+    const name = document.getElementById('name');
+    name.innerHTML = (user.firstName || 'no') + ' ' + (user.lastName || 'user');
+    userInput.innerHTML = ''
+  }).catch((err) => {
+    console.log({err});
+  })
+}

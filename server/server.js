@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 
 app.get('/allUsers', UserController.getAllUsers);
 
+app.get('/oneUser/:userName', UserController.getOneUser);
+
 app.post('/user', UserController.createUser);
 
 app.put('/update', UserController.updateUser);

@@ -33,6 +33,20 @@ const UserController = {
       if (err) return console.error(err);
       res.send({data: 'data'})
     })
+  },
+  getOneUser(req, res) {
+    const query = { firstName: req.params.userName }
+    console.log({query});
+    User.findOne(query, (err, user) => {
+      if (err) return console.error(err);
+      console.log('user in controller', {user});
+      if (user){
+        res.send(user)
+      } else {
+        res.send({firstName: null, lastName: null})
+      }
+
+    })
   }
 }
 
